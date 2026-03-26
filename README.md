@@ -1,5 +1,5 @@
 # Portfolio page of Anna Willikonsky
-Showcasing existing projects and contact informatiom.
+Showcasing existing projects and contact information.
 
 ## Environments
 - Preview: https://main--AnnaWillikonskyPortfolio--johan-t.aem.page/
