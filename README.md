@@ -1,9 +1,9 @@
-# Your Project's Title...
-Your project's description...
+# Portfolio page of Anna Willikonsky
+Showcasing existing projects and contact informatiom.
 
 ## Environments
-- Preview: https://main--{repo}--{owner}.aem.page/
-- Live: https://main--{repo}--{owner}.aem.live/
+- Preview: https://main--AnnaWillikonskyPortfolio--johan-t.aem.page/
+- Live: https://main--AnnaWillikonskyPortfolio--johan-t.aem.live/
 
 ## Documentation
 
