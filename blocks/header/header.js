@@ -3,8 +3,7 @@ import { loadFragment } from "../fragment/fragment.js";
 
 function normalizePath(path) {
   if (!path) return "/";
-  const normalized =
-    path.endsWith("/") && path !== "/" ? path.slice(0, -1) : path;
+  const normalized = path.endsWith("/") && path !== "/" ? path.slice(0, -1) : path;
   return normalized || "/";
 }
 

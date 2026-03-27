@@ -33,7 +33,7 @@ header nav a:any-link {
 /* brand */
 header .nav-brand {
     font-size: var(--heading-font-size-s);
-    font-weight: 700;
+    font-weight: 500;
 }
 
 header nav .nav-brand .default-content-wrapper {
@@ -92,6 +92,7 @@ header nav .nav-sections .sidebar.block li {
 }
 
 header nav .nav-sections a[aria-current="page"] {
-    background: #fff26a;
-    padding: 0 4px;
+    background: #0106ab;
+    color: #fff;
+    padding: 2px 4px;
 }
