@@ -36,9 +36,6 @@
     --heading-font-size-m: 27px;
     --heading-font-size-s: 24px;
     --heading-font-size-xs: 22px;
-
-    /* nav height */
-    --nav-height: 64px;
 }
 
 /* fallback fonts */
@@ -54,7 +51,7 @@
     src: local("Arial");
 }
 
-@media (width >= 900px) {
+@media (width >= 600px) {
     :root {
         /* body sizes */
         --body-font-size-m: 18px;
@@ -73,7 +70,7 @@
 
 body {
     display: none;
-    margin: 42px;
+    margin: 16px;
     background-color: var(--background-color);
     color: var(--text-color);
     font-family: var(--body-font-family);
@@ -86,7 +83,33 @@ body.appear {
 }
 
 header {
-    height: var(--nav-height);
+    height: auto;
+}
+
+@media (width >= 600px) {
+    body.appear {
+        display: grid;
+        grid-template-columns: max-content minmax(0, 1fr);
+        column-gap: 72px;
+        align-items: start;
+    }
+
+    body {
+        margin: 42px;
+    }
+
+    header {
+        position: relative;
+        width: fit-content;
+        height: auto;
+        min-height: calc(100vh - 84px);
+        align-self: start;
+    }
+
+    main,
+    footer {
+        margin-left: 0;
+    }
 }
 
 header .header,
@@ -116,18 +139,23 @@ h6 {
 h1 {
     font-size: var(--heading-font-size-xxl);
 }
+
 h2 {
     font-size: var(--heading-font-size-xl);
 }
+
 h3 {
     font-size: var(--heading-font-size-l);
 }
+
 h4 {
     font-size: var(--heading-font-size-m);
 }
+
 h5 {
     font-size: var(--heading-font-size-s);
 }
+
 h6 {
     font-size: var(--heading-font-size-xs);
 }
@@ -323,7 +351,7 @@ main > .section:first-of-type {
     margin-top: 0;
 }
 
-@media (width >= 900px) {
+@media (width >= 600px) {
     main > .section > div {
         padding: 0 32px;
     }
