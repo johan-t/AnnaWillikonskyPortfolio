@@ -18,6 +18,7 @@
     --text-color: #111;
     --link-color: #111;
     --link-hover-color: #555;
+    --nav-height: 0px;
 
     /* fonts */
     --body-font-family: "Helvetica Neue", helvetica, arial, sans-serif;
