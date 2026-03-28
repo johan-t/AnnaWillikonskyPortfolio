@@ -18,7 +18,7 @@
     --text-color: #111;
     --link-color: #111;
     --link-hover-color: #555;
-    --nav-height: 0px;
+    --nav-height: 230px;
 
     /* fonts */
     --body-font-family: "Helvetica Neue", helvetica, arial, sans-serif;
@@ -72,6 +72,7 @@ body.appear {
 
 header {
     height: auto;
+    min-height: var(--nav-height);
 }
 
 @media (width >= 600px) {
