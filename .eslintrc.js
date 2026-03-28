@@ -11,6 +11,8 @@ module.exports = {
     requireConfigFile: false,
   },
   rules: {
+    "operator-linebreak": "off",
+    "implicit-arrow-linebreak": "off",
     quotes: "off",
     "import/extensions": ["error", { js: "always" }], // require js file extensions in imports
     "linebreak-style": ["error", "unix"], // enforce unix linebreaks
