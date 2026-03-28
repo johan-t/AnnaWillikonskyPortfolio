@@ -1,0 +1,127 @@
+.fotos {
+    max-width: 100%;
+}
+
+.fotos.is-empty {
+    display: none;
+}
+
+.fotos .fotos-viewport {
+    position: relative;
+}
+
+.fotos .fotos-stage {
+    position: relative;
+}
+
+.fotos .fotos-slide {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 240ms ease;
+}
+
+.fotos .fotos-slide.is-active {
+    opacity: 1;
+    pointer-events: auto;
+    position: relative;
+}
+
+.fotos .fotos-slide-inner {
+    width: 100%;
+}
+
+.fotos .fotos-slide-media .fotos-slide-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fotos .fotos-slide-text .fotos-slide-inner {
+    display: grid;
+    place-items: center;
+    min-height: min(40vh, 360px);
+    font-size: 0.9rem;
+    line-height: 1.4;
+    text-align: center;
+}
+
+.fotos .fotos-slide-inner > *:first-child {
+    margin-top: 0;
+}
+
+.fotos .fotos-slide-inner > *:last-child {
+    margin-bottom: 0;
+}
+
+.fotos .fotos-slide picture {
+    display: block;
+    width: auto;
+    max-width: 100%;
+}
+
+.fotos .fotos-slide img {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: min(72vh, 720px);
+    object-fit: contain;
+    margin: 0 auto;
+}
+
+.fotos .fotos-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 14px;
+}
+
+.fotos .fotos-nav {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    color: rgb(150 150 150);
+    cursor: pointer;
+    font: inherit;
+    font-size: 1.5rem;
+    line-height: 1;
+    padding: 4px 8px;
+}
+
+.fotos .fotos-nav:hover,
+.fotos .fotos-nav:focus-visible {
+    color: rgb(50 50 50);
+}
+
+.fotos .fotos-nav:disabled {
+    cursor: default;
+    opacity: 0.45;
+}
+
+.fotos .fotos-counter {
+    margin: 0;
+    color: rgb(120 120 120);
+    font-size: 0.95rem;
+    line-height: 1;
+    min-width: 3.5rem;
+    text-align: center;
+}
+
+@media (width >= 600px) {
+    .fotos .fotos-stage {
+        min-height: min(78vh, 860px);
+    }
+
+    .fotos .fotos-slide-media .fotos-slide-inner {
+        min-height: min(78vh, 860px);
+    }
+
+    .fotos .fotos-slide img {
+        max-height: min(78vh, 860px);
+    }
+}
