@@ -118,16 +118,6 @@
 }
 
 @media (width >= 600px) {
-    main > .section.fotos-container {
-        display: flex;
-        align-items: center;
-        min-height: calc(100vh - 84px);
-    }
-
-    main > .section.fotos-container > .fotos-wrapper {
-        width: 100%;
-    }
-
     .fotos {
         margin-inline: auto;
     }
