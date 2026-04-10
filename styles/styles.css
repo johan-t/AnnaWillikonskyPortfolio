@@ -80,7 +80,6 @@ header {
     body.appear {
         display: grid;
         grid-template-columns: var(--nav-width) minmax(0, 1fr);
-        column-gap: 72px;
         align-items: start;
     }
 

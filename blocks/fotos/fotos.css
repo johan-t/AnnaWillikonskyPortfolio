@@ -120,6 +120,7 @@
 @media (width >= 600px) {
     .fotos {
         margin-inline: auto;
+        transform: translateX(calc(var(--nav-width) / -2));
     }
 
     .fotos .fotos-viewport {
