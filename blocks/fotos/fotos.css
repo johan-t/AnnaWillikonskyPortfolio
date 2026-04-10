@@ -44,14 +44,6 @@
     justify-content: center;
 }
 
-.fotos .fotos-slide-text .fotos-slide-inner {
-    display: grid;
-    place-items: center;
-    min-height: clamp(180px, 30vh, 280px);
-    font-size: 0.9rem;
-    line-height: 1.4;
-    text-align: center;
-}
 
 .fotos .fotos-slide-inner > *:first-child {
     margin-top: 0;
@@ -115,6 +107,22 @@
     line-height: 1;
     min-width: 3.5rem;
     text-align: center;
+}
+
+.fotos .fotos-caption {
+    margin-top: 18px;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    text-align: center;
+    color: rgb(80 80 80);
+}
+
+.fotos .fotos-caption > *:first-child {
+    margin-top: 0;
+}
+
+.fotos .fotos-caption > *:last-child {
+    margin-bottom: 0;
 }
 
 @media (width >= 600px) {

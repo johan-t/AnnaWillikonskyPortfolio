@@ -52,9 +52,12 @@ export default async function decorate(block) {
     return;
   }
 
+  const mediaSlides = slides.filter((s) => s.classList.contains("fotos-slide-media"));
+  const textSlides = slides.filter((s) => s.classList.contains("fotos-slide-text"));
+
   const stage = document.createElement("div");
   stage.className = "fotos-stage";
-  slides.forEach((slide) => stage.append(slide));
+  mediaSlides.forEach((slide) => stage.append(slide));
 
   const viewport = document.createElement("div");
   viewport.className = "fotos-viewport";
@@ -70,12 +73,24 @@ export default async function decorate(block) {
   const controls = document.createElement("div");
   controls.className = "fotos-controls";
   controls.append(prevButton, counter, nextButton);
-  block.replaceChildren(viewport, controls);
+
+  const children = [viewport, controls];
+
+  if (textSlides.length) {
+    const caption = document.createElement("div");
+    caption.className = "fotos-caption";
+    textSlides.forEach((s) => {
+      caption.append(...s.querySelector(".fotos-slide-inner").childNodes);
+    });
+    children.push(caption);
+  }
+
+  block.replaceChildren(...children);
 
   let activeIndex = 0;
 
   const render = () => {
-    slides.forEach((slide, index) => {
+    mediaSlides.forEach((slide, index) => {
       const isActive = index === activeIndex;
       slide.classList.toggle("is-active", isActive);
       slide.setAttribute("aria-hidden", String(!isActive));
@@ -86,13 +101,13 @@ export default async function decorate(block) {
       }
     });
 
-    counter.textContent = formatCounter(activeIndex, slides.length);
-    prevButton.disabled = slides.length < 2;
-    nextButton.disabled = slides.length < 2;
+    counter.textContent = formatCounter(activeIndex, mediaSlides.length);
+    prevButton.disabled = mediaSlides.length < 2;
+    nextButton.disabled = mediaSlides.length < 2;
   };
 
   const setActiveSlide = (index) => {
-    activeIndex = (index + slides.length) % slides.length;
+    activeIndex = (index + mediaSlides.length) % mediaSlides.length;
     render();
   };
 
