@@ -19,6 +19,7 @@
     --link-color: #0106ab;
     --link-hover-color: #1d22c7;
     --nav-height: 230px;
+    --nav-width: 280px;
 
     /* fonts */
     --body-font-family: "Helvetica Neue", helvetica, arial, sans-serif;
@@ -78,8 +79,7 @@ header {
 @media (width >= 600px) {
     body.appear {
         display: grid;
-        grid-template-columns: max-content minmax(0, 1fr);
-        column-gap: 72px;
+        grid-template-columns: var(--nav-width) minmax(0, 1fr);
         align-items: start;
     }
 
@@ -89,7 +89,8 @@ header {
 
     header {
         position: relative;
-        width: fit-content;
+        width: var(--nav-width);
+        max-width: 100%;
         height: auto;
         min-height: calc(100vh - 84px);
         align-self: start;
@@ -328,11 +329,6 @@ main img {
     width: 100%;
 }
 
-/* sections */
-main > .section {
-    margin: 40px 0;
-}
-
 main > .section > div {
     max-width: 1200px;
     margin: auto;
@@ -346,6 +342,16 @@ main > .section:first-of-type {
 @media (width >= 600px) {
     main > .section > div {
         padding: 0 32px;
+    }
+
+    main > .section.fotos-container {
+        display: flex;
+        align-items: center;
+        min-height: calc(100vh - 84px);
+    }
+
+    main > .section.fotos-container > .fotos-wrapper {
+        width: 100%;
     }
 }
 
