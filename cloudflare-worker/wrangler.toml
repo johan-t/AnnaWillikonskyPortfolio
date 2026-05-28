@@ -1,0 +1,14 @@
+name = "aem-prod-worker"
+main = "src/index.mjs"
+workers_dev = false
+routes = [
+  { pattern = "www.annawillikonsky.com/*", zone_id = "d63d0aa1e14f36d0fefdc37da366d43a" },
+  { pattern = "annawillikonsky.com/*", zone_id = "d63d0aa1e14f36d0fefdc37da366d43a" }
+]
+account_id = "5c548beda52cbe9e9ae0f924ff109b30"
+
+compatibility_date = "2025-03-17"
+
+[vars]
+ORIGIN_HOSTNAME = "main--AnnaWillikonskyPortfolio--johan-t.aem.live"
+CANONICAL_HOST = "www.annawillikonsky.com"

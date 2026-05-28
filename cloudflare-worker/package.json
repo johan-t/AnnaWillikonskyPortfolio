@@ -1,0 +1,13 @@
+{
+  "name": "annawillikonsky-cloudflare-worker",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Cloudflare Worker fronting AEM Edge Delivery for annawillikonsky.com",
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail -f pretty"
+  },
+  "devDependencies": {
+    "wrangler": "^3"
+  }
+}
