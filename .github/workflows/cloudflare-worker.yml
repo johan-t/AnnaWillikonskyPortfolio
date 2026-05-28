@@ -22,6 +22,24 @@ jobs:
           cache: npm
           cache-dependency-path: cloudflare-worker/package-lock.json
       - run: npm ci
+      - name: Diagnose secret (length + masked prefix/suffix)
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          echo "length=${#CLOUDFLARE_API_TOKEN}"
+          echo "prefix=${CLOUDFLARE_API_TOKEN:0:5}"
+          echo "suffix_last3=${CLOUDFLARE_API_TOKEN: -3}"
+          echo "expected_length=52 expected_prefix=cfat_ expected_suffix_last3=3d9"
+      - name: Verify token against Cloudflare
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          curl -s -o /dev/null -w "verify_status=%{http_code}\n" \
+            -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+            "https://api.cloudflare.com/client/v4/accounts/5c548beda52cbe9e9ae0f924ff109b30/tokens/verify"
+          curl -s -o /dev/null -w "scripts_status=%{http_code}\n" \
+            -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+            "https://api.cloudflare.com/client/v4/accounts/5c548beda52cbe9e9ae0f924ff109b30/workers/services/aem-prod-worker"
       - run: npx wrangler deploy
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
