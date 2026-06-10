@@ -22,8 +22,8 @@
     --nav-width: 280px;
 
     /* fonts */
-    --body-font-family: "Helvetica Neue", helvetica, arial, sans-serif;
-    --heading-font-family: "Helvetica Neue", helvetica, arial, sans-serif;
+    --body-font-family: georgia, "Times New Roman", times, serif;
+    --heading-font-family: georgia, "Times New Roman", times, serif;
 
     /* body sizes */
     --body-font-size-m: 19px;
