@@ -89,6 +89,43 @@ export default async function decorate(block) {
 
   let activeIndex = 0;
 
+  // Gap kept between a wide image and the sidebar when the image can't be
+  // fully centered on the viewport.
+  const SIDEBAR_GAP = 24;
+  const desktop = window.matchMedia("(min-width: 600px)");
+
+  // Center the active image on the viewport, but never let it overlap the
+  // sidebar: shift left toward the page centre only as far as the image's left
+  // edge allows. Wide images on narrow windows simply shift less.
+  const adjustShift = () => {
+    if (!desktop.matches) {
+      block.style.removeProperty("--fotos-shift");
+      return;
+    }
+    const header = document.querySelector("header");
+    const image =
+      stage.querySelector(".fotos-slide.is-active img") ||
+      stage.querySelector("img");
+    const wrapper = block.closest(".fotos-wrapper") || block.parentElement;
+    if (!header || !image || !wrapper) return;
+
+    const imageWidth = image.getBoundingClientRect().width;
+    if (!imageWidth) return; // not laid out / loaded yet
+
+    // wrapper is not transformed, so its geometry is stable regardless of shift
+    const content = wrapper.getBoundingClientRect();
+    const contentCenter = content.left + content.width / 2;
+    const centeredShift = contentCenter - window.innerWidth / 2;
+    const imageLeftUnshifted = contentCenter - imageWidth / 2;
+    const sidebarRight = header.getBoundingClientRect().right;
+    const maxShiftNoOverlap = imageLeftUnshifted - (sidebarRight + SIDEBAR_GAP);
+
+    const shift = Math.max(0, Math.min(centeredShift, maxShiftNoOverlap));
+    block.style.setProperty("--fotos-shift", `${-shift}px`);
+  };
+
+  const scheduleAdjust = () => window.requestAnimationFrame(adjustShift);
+
   const render = () => {
     mediaSlides.forEach((slide, index) => {
       const isActive = index === activeIndex;
@@ -104,6 +141,7 @@ export default async function decorate(block) {
     counter.textContent = formatCounter(activeIndex, mediaSlides.length);
     prevButton.disabled = mediaSlides.length < 2;
     nextButton.disabled = mediaSlides.length < 2;
+    scheduleAdjust();
   };
 
   const setActiveSlide = (index) => {
@@ -128,4 +166,14 @@ export default async function decorate(block) {
 
   block.tabIndex = 0;
   render();
+
+  // Recompute the shift when the layout can change or images finish loading.
+  window.addEventListener("resize", scheduleAdjust);
+  desktop.addEventListener("change", scheduleAdjust);
+  mediaSlides.forEach((slide) => {
+    const img = slide.querySelector("img");
+    if (img && !img.complete) {
+      img.addEventListener("load", scheduleAdjust, { once: true });
+    }
+  });
 }

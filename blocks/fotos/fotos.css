@@ -128,7 +128,10 @@
 @media (width >= 600px) {
     .fotos {
         margin-inline: auto;
-        transform: translateX(calc(var(--nav-width) / -2));
+
+        /* centered on the viewport by default; JS reduces the shift on narrow
+           windows so wide images never slide under the sidebar */
+        transform: translateX(var(--fotos-shift, calc(var(--nav-width) / -2)));
     }
 
     .fotos .fotos-viewport {
