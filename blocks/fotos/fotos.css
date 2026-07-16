@@ -128,15 +128,20 @@
 @media (width >= 600px) {
     .fotos {
         margin-inline: auto;
-
-        /* centered on the viewport by default; JS reduces the shift on narrow
-           windows so wide images never slide under the sidebar */
-        transform: translateX(var(--fotos-shift, calc(var(--nav-width) / -2)));
     }
 
     .fotos .fotos-viewport {
         max-width: min(100%, 1120px);
         margin-inline: auto;
+
+        /* Images may shift to avoid the sidebar on narrow desktop windows. */
+        transform: translateX(var(--fotos-shift, calc(var(--nav-width) / -2)));
+    }
+
+    .fotos .fotos-controls {
+        /* Keep the controls centered under the gallery, independent of the
+           active image's sidebar-avoidance shift. */
+        transform: translateX(calc(var(--nav-width) / -2));
     }
 
     .fotos .fotos-stage {
